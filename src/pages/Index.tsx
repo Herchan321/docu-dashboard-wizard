@@ -1,4 +1,3 @@
-
 import { FileText, Users, Clock, Eye } from "lucide-react";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import StatCard from "@/components/dashboard/StatCard";
@@ -38,12 +37,20 @@ const recentActivities = [
   }
 ];
 
-// Table columns configuration
+// Define the type for our activities to ensure type safety
+type Activity = {
+  user: string;
+  action: string;
+  document: string;
+  timestamp: string;
+};
+
+// Table columns configuration - fixing the typing issue
 const activityColumns = [
-  { header: "Utilisateur", accessorKey: "user" },
-  { header: "Action", accessorKey: "action" },
-  { header: "Document", accessorKey: "document" },
-  { header: "Horodatage", accessorKey: "timestamp" },
+  { header: "Utilisateur", accessorKey: "user" as keyof Activity },
+  { header: "Action", accessorKey: "action" as keyof Activity },
+  { header: "Document", accessorKey: "document" as keyof Activity },
+  { header: "Horodatage", accessorKey: "timestamp" as keyof Activity },
 ];
 
 const Index = () => {
